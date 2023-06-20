@@ -25,3 +25,5 @@ media/
 # Dependencies
 venv/
 .env
+
+.DS_Store
