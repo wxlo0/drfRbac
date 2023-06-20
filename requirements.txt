@@ -1,0 +1,8 @@
+asgiref==3.7.2
+Django==3.2.16
+djangorestframework==3.14.0
+PyMySQL==1.0.3
+python-dotenv==1.0.0
+pytz==2023.3
+sqlparse==0.4.4
+typing_extensions==4.6.3

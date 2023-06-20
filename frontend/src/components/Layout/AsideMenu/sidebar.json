@@ -1,0 +1,39 @@
+[
+  {
+    "key": "1",
+    "icon": "BankOutlined",
+    "title": "后台首页",
+    "path": "/home"
+  },
+  {
+    "key": "2",
+    "icon": "TeamOutlined",
+    "title": "用户管理",
+    "path": "/user"
+  },
+  {
+    "key": "3",
+    "icon": "RobotOutlined",
+    "title": "学生管理",
+    "path": "/student"
+  },
+  {
+    "key": "sub1",
+    "icon": "ClusterOutlined",
+    "title": "权限相关",
+    "children": [
+      {
+        "key": "5",
+        "icon": "ContactsOutlined",
+        "title": "角色管理",
+        "path": "/role"
+      },
+      {
+        "key": "6",
+        "icon": "TableOutlined",
+        "title": "权限管理",
+        "path": "/permission"
+      }
+    ]
+  }
+]

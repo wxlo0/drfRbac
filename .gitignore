@@ -1,0 +1,27 @@
+# Python/Django
+*.pyc
+*.pyo
+__pycache__/
+env/
+*.sqlite3
+
+# IDE/Editor
+.vscode/
+.idea/
+*.pyc
+*.swp
+*~
+
+# Logs
+logs/
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# Dependencies
+venv/
+.env
