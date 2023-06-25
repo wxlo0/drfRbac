@@ -17,7 +17,7 @@ EXPIRE_MINUTES = getattr(settings, 'REST_FRAMEWORK_TOKEN_EXPIRE_MINUTES', 60 * 2
 class MyTokenAuthentication(TokenAuthentication):
 
     def authenticate(self, request):
-        request.META['HTTP_AUTHORIZATION'] = f'Token {request.META["HTTP_TOKEN"]}'
+        request.META['HTTP_AUTHORIZATION'] = f'Token {request.META.get("HTTP_TOKEN")}'
         return super(MyTokenAuthentication, self).authenticate(request)
 
     def authenticate_credentials(self, key):

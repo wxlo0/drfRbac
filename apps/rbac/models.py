@@ -31,8 +31,7 @@ class User(AbstractUser, BaseModel):
 
 class Role(BaseModel):
     permissions = models.ManyToManyField('Permissions', related_name='roles')
-    role_name = models.CharField("角色名称", unique=True, max_length=15)
-    role_status = models.BooleanField("角色状态", default=False)
+    role_name = models.CharField("角色名称", unique=True, max_length=255)
     role_desc = models.CharField("角色描述", null=True, max_length=255)
 
     class Meta:
@@ -40,7 +39,7 @@ class Role(BaseModel):
 
 
 class Permissions(BaseModel):
-    permissions_name = models.CharField("权限名称", unique=True, max_length=15)
+    permissions_name = models.CharField("权限名称", unique=True, max_length=255)
     permissions_desc = models.CharField("权限描述", null=True, max_length=255)
     permissions_status = models.BooleanField("权限状态", default=True)
 

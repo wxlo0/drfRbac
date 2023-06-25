@@ -43,7 +43,7 @@
     </div>
     <div class="mt-10">
       <span>@2023 Clyde出品  </span>
-      <a class="cursor-pointer" href="https://github.com/Tengxu666" target="_blank">Github For This Project</a>
+      <a class="cursor-pointer" href="https://github.com/Tengxu666/drfRbac" target="_blank">Github For This Project</a>
     </div>
   </div>
 </template>
@@ -90,7 +90,7 @@ function submit(){
   userLogin(loginData).then(res => {
     store.commit("setUserInfo", res.data)
     router.push("/home")
-    message.success("登录成功")
+    message.success(`欢迎回来${res.data.real_name}`)
   })
 }
 

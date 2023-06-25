@@ -12,6 +12,7 @@ const http = axios.create({
 
 http.interceptors.request.use(params => {
     store.commit('setLoading', true)
+    params.headers['Token'] = store.getters.getToken;
     return params
 })
 
@@ -19,6 +20,7 @@ const STATUS_MESSAGE_MAP = {
     400: rs => rs.msg,
     500: "系统错误",
     401: "认证失败，请重新登录",
+    403: "没有权限"
 };
 
 http.interceptors.response.use(
@@ -42,6 +44,8 @@ http.interceptors.response.use(
         }
     },
     error => {
+        store.commit('setLoading', false)
+        message.error("网络错误")
         return Promise.reject(error);
     }
 );

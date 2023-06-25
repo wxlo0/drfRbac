@@ -14,6 +14,14 @@ class Command(BaseCommand):
     help = '同步 RBAC 权限'
 
     def handle(self, *args, **options):
+        # 删除多余权限
+        existing_permissions = Permissions.objects.all()
+        existing_permissions_names = {permission.permissions_name for permission in existing_permissions}
+        rbac_permissions_names = {item["permissions_name"] for item in rbac_permissions}
+        permissions_to_delete = existing_permissions_names - rbac_permissions_names
+        Permissions.objects.filter(permissions_name__in=permissions_to_delete).delete()
+
+        # 新建或更新权限
         for item in rbac_permissions:
             permission, created = Permissions.objects.get_or_create(permissions_name=item["permissions_name"],
                                                                     defaults=item)
@@ -30,10 +38,12 @@ class Command(BaseCommand):
         superuser, created = User.objects.get_or_create(username='admin',
                                                         defaults={'is_superuser': True, 'is_staff': True,
                                                                   'password': 'admin', 'real_name': 'admin'})
+        User.objects.get_or_create(username='user', defaults={'is_superuser': False, 'is_staff': False,
+                                                              'password': 'admin', 'real_name': 'user'})
         if created:
             superuser.roles.add(superuser_group)
             superuser.set_password('admin')
             superuser.save()
 
-        print("同步 RBAC 权限成功")
+        print("\n同步 RBAC 权限成功")
 

@@ -103,8 +103,8 @@ DATABASES = {
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'core.ExceptionHandler.common_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'core.TokenAuthentication.MyTokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'core.TokenAuthentication.MyTokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

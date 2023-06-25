@@ -49,8 +49,10 @@ python manage.py migrate
 ```
 python manage.py sync_permissions
 ```
-超级管理员：
 
-用户名：amdin 密码：admin
+
+管理 用户名：amdin 密码：admin
+普通 用户名：user  密码：admin
+
 
 ## docker-compose 部署

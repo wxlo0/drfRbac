@@ -16,7 +16,7 @@
 <template>
   <div class="flex mr-5 items-center justify-between w-16">
     <a-dropdown placement="bottom">
-      <div class="avatar">{{ avatarInitial }}</div>
+      <div class="avatar">{{ store.getters.getRealName[0].toUpperCase() || 'M' }}</div>
       <template #overlay>
         <a-menu>
           <a-menu-item>
@@ -35,7 +35,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { computed } from 'vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 import SettingDrawer from './SettingDrawer/index.vue';
 import {useRouter} from "vue-router";
@@ -43,17 +42,15 @@ import {useStore} from "vuex";
 
 const router = useRouter()
 const store = useStore()
-const username = ref('Admin');
-const avatarInitial = computed(() => username.value.charAt(0).toUpperCase());
 
-const visible = ref(false);
+const visible = ref(false)
 
 const showDrawer = () => {
-  visible.value = true;
-};
+  visible.value = true
+}
 
 function logout(){
-  store.commit("setUserInfo", {})
+  localStorage.clear()
   router.push('/login')
 }
 

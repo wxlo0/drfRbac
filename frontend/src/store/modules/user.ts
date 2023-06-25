@@ -1,9 +1,9 @@
+import {list} from "postcss";
 
 interface UserState {
     token: null;
     username: string;
     real_name: string;
-    role: string;
 }
 
 const UserModule = {
@@ -11,20 +11,22 @@ const UserModule = {
         token: null,
         username: "",
         real_name: "",
-        role: "",
+        roles: [],
     } as UserState,
     mutations: {
         setUserInfo(state: UserState, user_info: object) {
             state.token = user_info.token
             state.username = user_info.username
             state.real_name = user_info.real_name
-            state.role = user_info.role
         }
     },
     actions: {},
     getters: {
         getToken(state: UserState) {
             return state.token
+        },
+        getRealName(state: UserState) {
+            return state.real_name
         }
     }
 };

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from django.contrib import auth
-from apps.rbac.models import User
+from apps.rbac.models import User, Role, Permissions
 from core.ExceptionHandler import RequestException
 import re
 
@@ -41,13 +41,13 @@ class LoginSerializer(serializers.ModelSerializer):
     real_name = serializers.CharField(read_only=True)
     token = serializers.SerializerMethodField()
 
-    def get_token(self, obj):
-        user = User.objects.get(username=obj.get('username'))
-        return user.token()
-
     class Meta:
         model = User
         fields = ['username', 'password', 'token', 'real_name']
+
+    def get_token(self, obj):
+        user = User.objects.get(username=obj.get('username'))
+        return user.token()
 
     def validate(self, attrs):
         username = attrs.get('username', '')
@@ -60,3 +60,36 @@ class LoginSerializer(serializers.ModelSerializer):
         if not user.token():
             Token.objects.create(user=user)
         return {'real_name': user.real_name, 'username': username, 'token': user.token()}
+
+
+class UserSerializer(serializers.ModelSerializer):
+    roles = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'real_name', 'roles', 'is_active', 'updated_at']
+
+    def get_roles(self, obj):
+        roles = obj.roles.all()
+        return RoleSerializer(roles, many=True).data
+
+
+class RoleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Role
+        fields = ['id', 'role_name', 'role_desc']
+
+
+class ChangeUserRoleSerializer(serializers.Serializer):
+
+    class Meta:
+        model = Role
+        fields = ['roles']
+
+
+class PermissionsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Permissions
+        fields = ['id', 'permissions_name', 'permissions_desc', 'permissions_status']
