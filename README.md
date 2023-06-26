@@ -21,6 +21,10 @@ drfRbac项目采用现代化的技术栈，包括Django框架和Django REST Fram
 
 通过该项目，你可以学习和了解RBAC权限管理模型的实现原理，以及如何在Django和Django REST Framework中构建和管理权限系统。你可以使用该项目作为基础，根据自己的需求进行功能扩展和定制，从而加速开发过程并提高系统的安全性和可扩展性。
 
+![img_1.png](img/img_1.png)
+![img.png](img/img.png)
+![img.png](img/img_2.png)
+
 ## 项目配置（本地启动）
 
 ### 数据库
@@ -84,3 +88,5 @@ python manage.py runserver
 ### frontend 目录为前端文件
 
 ## docker-compose 部署
+
+等待更新...
